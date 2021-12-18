@@ -1,8 +1,13 @@
 -- SQLite
 
+drop table People;
+drop table Courses;
+drop table Transactions;
+drop table Voluntarilies;
+drop table Attendings;
+
 -- People
 
-drop table People;
 create table [People] (
     Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Firstname   TEXT NULL,
@@ -31,7 +36,6 @@ VALUES ('محمدرضا', 'طیبی', 'Cheif Coffee Officer', '1377-03-16',
 
 -- Courses
 
-drop table Courses;
 create table [Courses] (
     Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Title   TEXT NULL,
@@ -48,3 +52,50 @@ create table [Courses] (
 INSERT INTO Courses (Title, [From], [To], [Plan], Notes, TeacherCode, TeacherName, Fee, Calendar)
 VALUES ('نجوم مقدماتی', '1398-01-01', '1398-12-29', '1- مقدمات اخترشناسی 2- صورت های فلکی 3- ...', 'دوره مخصوص رده سنی کودکان است', '1', 'محمدرضا طیبی',
 '1000', '- شنبه ها 10 تا 12 - دو شنبه ها 13 تا 14');
+
+-- Transactions
+
+create table [Transactions] (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    Notes TEXT NULL,
+    Date TEXT NULL,
+    Amount TEXT NULL,
+    BankRefferalCode TEXT NULL,
+    BankName TEXT NULL,
+    BankAccount TEXT NULL,
+    OwnerCode INTEGER NULL,
+    OwnerName TEXT NULL
+);
+
+INSERT INTO [Transactions] (Notes, Date, Amount, BankRefferalCode, BankName, BankAccount, OwnerCode, OwnerName)
+VALUES ('داده ی آزمایشی غیر واقعی', '1267/01/01', '1', '.', 'بانک ...', '۰۵۹۰-۹۹۵۰-۹۹۱۱-۶۰۳۷', 1, 'محمدرضا طیبی');
+
+-- Voluntarilies
+
+create table Voluntarilies (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    Title TEXT NOT NULL,
+    [From] TEXT NULL,
+    [TO] TEXT NULL,
+    VolunteerCode INTEGER NULL,
+    VolunteerName TEXT NULL,
+    Activities TEXT NULL
+);
+
+INSERT INTO [Voluntarilies] (Title, [From], [To], VolunteerName, VolunteerCode, Activities)
+VALUES ('ساماندهی داوطلبان رصدخانه ابن صلاح', 'آذر 1400', 'آبان 1400', 'محمدرضا طیبی', 1, 'برنامه نویسی نرم افزار / راه اندازی صفحه رصد خانه در فضای مجازی');
+
+-- Attendings
+
+create table Attendings (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    CourseId INTEGER NOT NULL,
+    [Submit] TEXT NULL,
+    ParticipantCode INTEGER NULL,
+    ParticipantName TEXT NULL,
+    FinalMark INTEGER NULL,
+    FinalStatus TEXT NULL
+);
+
+INSERT INTO [Attendings] ([Submit], ParticipantCode, ParticipantName, FinalMark, FinalStatus, CourseId)
+VALUES ('1398/04/01', 1, 'محمدرضا طیبی', '18', 'قبول', 1)

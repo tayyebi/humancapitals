@@ -25,14 +25,22 @@ namespace App
         }
         public override void MyBind()
         {
+            dataGridView1.RowsAdded += DataGridView1_RowsAdded;
             dataGridView1.DataSource = Program.dependencies.person.Select();
             dataGridView1.Refresh();
             if (!loaded)
             {
                 dataGridView1.Columns.Add(new DataGridViewButtonColumn { DisplayIndex = 2, Name = "Card", Text = "کارت عضویت", UseColumnTextForButtonValue = true });
+                //dataGridView1.Columns.Add(new DataGridViewButtonColumn { DisplayIndex = 3, Name = "ChoosePic", Text = "انتخاب عکس", UseColumnTextForButtonValue = true });
                 loaded = true;
             }
-            base.MyBind();
+            (dataGridView1.Columns["Pic"] as DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Zoom;
+           base.MyBind();
+        }
+
+        private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Height = 60;
         }
 
         public override void CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -40,39 +48,72 @@ namespace App
             base.CellContentClick(sender, e);
             var person = Program.dependencies.person.Find(SelectedId);
 
-            if (e.ColumnIndex > 1)
+            switch (dataGridView1.Columns[e.ColumnIndex].Name)
             {
-                var card = new Cute.Card();
-                card.lblName.Content = $"{person.Firstname} {person.Lastname}";
-                card.lblTitle.Content = $"{person.Title}";
-                card.img34.Source = new BitmapImage(new Uri(File.Exists($"{Directory.GetCurrentDirectory()}\\People\\{person.Id}.png")
-                    ? $"{Directory.GetCurrentDirectory()}\\People\\{person.Id}.png"
-                    : Directory.GetCurrentDirectory() + "\\Resources\\human.png"));
-                card.imgBack.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\Resources\\back.jpg"));
-                card.imgRocket.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\Resources\\rocket.png"));
-                card.Print();
-                MessageBox.Show("خاتمه ی فرایند چاپ");
-            }
-            else
-            {
-                cbGroup.Text = person.Group;
-                decimal o = 0;
-                Decimal.TryParse(person.Joined, out o);
-                tbJoined.Value = o;
-                tbFirstname.Text = person.Firstname;
-                tbLastname.Text = person.Lastname;
-                tbOrganization.Text = person.Organization;
-                tbAddress.Text = person.Address;
-                tbEmail.Text = person.Email;
-                tbPhone.Text = person.Phone;
-                tbTitle.Text = person.Title;
-                cbEducation.Text = person.Education;
-                tbNotes.Text = person.Notes;
-                Decimal.TryParse(person.ReferralCode, out o);
-                person1.tbCode.Value = o;
-                person1.tbName.Text = person.ReferralName;
-                cbReferMethod.Text = person.ReferralMethod;
-                tbBirthDate.Text = person.BirthDate;
+                //case "ChoosePic":
+                //    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                //    {
+                //        openFileDialog.Filter = "تصویر png (*.png)|*.png";
+                //        openFileDialog.FilterIndex = 1;
+                //        openFileDialog.RestoreDirectory = true;
+
+                //        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //        {
+                //            var filePath = openFileDialog.FileName;
+                //            var newFilePath = $"{Directory.GetCurrentDirectory()}\\People\\{SelectedId}.png";
+                //            if (File.Exists(newFilePath))
+                //            {
+                //                DialogResult dialogResult = MessageBox.Show("مطمینم", "عکس جایگزین شود؟", MessageBoxButtons.YesNo);
+                //                if (dialogResult == DialogResult.Yes)
+                //                {
+                //                    System.GC.Collect();
+                //                    System.GC.WaitForPendingFinalizers();
+                //                    File.Replace(filePath, newFilePath, "c:\\a-tmp", true);
+                //                }
+                //                else
+                //                {
+                //                    MessageBox.Show("عکس تغییر نکرد");
+                //                }
+                //            }
+                //            else
+                //                File.Copy(filePath, newFilePath);
+                //        }
+                //    }
+                //    break;
+                case "Card":
+                    var card = new Cute.Card();
+                    card.lblName.Content = $"{person.Firstname} {person.Lastname}";
+                    card.lblTitle.Content = $"{person.Title}";
+                    card.lblCode.Content = $"{person.Id}";
+                    // card.img34.Source = new MyBitmap().Bitmap2BitmapImage(person.Pic);
+                    card.img34.Source = new BitmapImage(new Uri(File.Exists($"{Directory.GetCurrentDirectory()}\\People\\{person.Id}.png")
+                        ? $"{Directory.GetCurrentDirectory()}\\People\\{person.Id}.png"
+                        : Directory.GetCurrentDirectory() + "\\Resources\\human.png"));
+                    card.imgRocket.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\Resources\\rocket.png"));
+                    card.Print();
+                    MessageBox.Show("خاتمه ی فرایند چاپ");
+                    break;
+                case "Select":
+                case "Delete":
+                    cbGroup.Text = person.Group;
+                    decimal o = 0;
+                    Decimal.TryParse(person.Joined, out o);
+                    tbJoined.Value = o;
+                    tbFirstname.Text = person.Firstname;
+                    tbLastname.Text = person.Lastname;
+                    tbOrganization.Text = person.Organization;
+                    tbAddress.Text = person.Address;
+                    tbEmail.Text = person.Email;
+                    tbPhone.Text = person.Phone;
+                    tbTitle.Text = person.Title;
+                    cbEducation.Text = person.Education;
+                    tbNotes.Text = person.Notes;
+                    Decimal.TryParse(person.ReferralCode, out o);
+                    person1.tbCode.Value = o;
+                    person1.tbName.Text = person.ReferralName;
+                    cbReferMethod.Text = person.ReferralMethod;
+                    tbBirthDate.Text = person.BirthDate;
+                    break;
             }
         }
 

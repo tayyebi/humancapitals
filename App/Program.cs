@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace App
     static class Program
     {
         static public Dependencies dependencies = new Dependencies();
+        //static public string DatabaseFile = Directory.GetCurrentDirectory() + "\\Resources\\local.db";
 
         /// <summary>
         /// The main entry point for the application.

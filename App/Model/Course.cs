@@ -6,7 +6,7 @@ using System.Text;
 
 namespace App.Model
 {
-    class Course
+    public class Course
     {
         [DisplayName("شناسه درس")]
         public int Id { get; set; }

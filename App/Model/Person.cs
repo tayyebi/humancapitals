@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace App.Model
 {
@@ -11,6 +14,17 @@ namespace App.Model
     {
         [DisplayName("شناسه کاربری")]
         public int Id { get; set; }
+        [DisplayName("تصویر")]
+        public Bitmap Pic
+        {
+            get
+            {
+                var fileAdd = $"{Directory.GetCurrentDirectory()}\\People\\{Id}.png";
+                if (File.Exists(fileAdd))
+                    return new Bitmap(fileAdd);
+                else return null;
+            }
+        }
         [DisplayName("نام")]
         public string Firstname { get; set; }
         [DisplayName("نام خانوادگی")]

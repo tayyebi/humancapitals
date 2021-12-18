@@ -16,6 +16,8 @@ namespace App
             InitializeComponent();
         }
 
+        bool loaded = false;
+
         private void Courses_Load(object sender, EventArgs e)
         {
             tbTo.Text = PersianDateTime.Now.AddDays(90).ToString("yyyy-MM-dd");
@@ -26,6 +28,11 @@ namespace App
 
         public override void MyBind()
         {
+            if (!loaded)
+            {
+                dataGridView1.Columns.Add(new DataGridViewButtonColumn { DisplayIndex = 2, Name = "Participants", Text = "شرکت کنندگان", UseColumnTextForButtonValue = true });
+                loaded = true;
+            }
             dataGridView1.DataSource = Program.dependencies.course.Select();
             dataGridView1.Refresh();
             base.MyBind();
@@ -34,19 +41,30 @@ namespace App
         public override void CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             base.CellContentClick(sender, e);
-            var person = Program.dependencies.course.Find(SelectedId);
-            decimal o = 0;
-            Decimal.TryParse(person.Fee, out o);
-            tbFee.Value = o;
-            tbCalendar.Text = person.Calendar;
-            tbFrom.Text = person.From;
-            tbNotes.Text = person.Notes;
-            tbPlan.Text = person.Plan;
-            tbTitle.Text = person.Title;
-            tbTo.Text = person.To;
-            person1.tbName.Text = person.TeacherName;
-            Decimal.TryParse(person.TeacherCode, out o);
-            person1.tbCode.Value = o;
+
+            var course = Program.dependencies.course.Find(SelectedId);
+
+            switch (dataGridView1.Columns[e.ColumnIndex].Name)
+            {
+                case "Participants":
+                    new Participants { Course = course }.ShowDialog();
+                    break;
+                case "Select":
+                case "Delete":
+                    decimal o = 0;
+                    Decimal.TryParse(course.Fee, out o);
+                    tbFee.Value = o;
+                    tbCalendar.Text = course.Calendar;
+                    tbFrom.Text = course.From;
+                    tbNotes.Text = course.Notes;
+                    tbPlan.Text = course.Plan;
+                    tbTitle.Text = course.Title;
+                    tbTo.Text = course.To;
+                    person1.tbName.Text = course.TeacherName;
+                    Decimal.TryParse(course.TeacherCode, out o);
+                    person1.tbCode.Value = o;
+                    break;
+            }
         }
 
         public override void MySelect()

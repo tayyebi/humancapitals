@@ -10,5 +10,8 @@ namespace App.Repository
     {
         public Person person = new Person();
         public Course course = new Course();
+        public Transaction transaction = new Transaction();
+        public Attending attending = new Attending();
+        public Voluntarily voluntarily = new Voluntarily();
     }
 }

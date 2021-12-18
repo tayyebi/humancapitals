@@ -6,26 +6,16 @@
              xmlns:local="clr-namespace:Cute"
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
-    
+
     <Grid Height="21cm" Margin="0,0,0,0" Width="14.8cm" Background="White" >
-        
-        <Rectangle HorizontalAlignment="Left" Height="12cm" Margin="0,0,0,0" Stroke="Black" StrokeDashArray="6 8" VerticalAlignment="Top" Width="12cm"/>
-        <Image x:FieldModifier="public" x:Name="imgRocket" HorizontalAlignment="Left" Height="12cm" Margin="0,0,0,0" VerticalAlignment="Top" Width="12cm" />
 
-        <Rectangle HorizontalAlignment="Left" Height="3cm" Margin="0,0,0,0" Stroke="Black" StrokeDashArray="6 8" VerticalAlignment="Top" Width="12cm" Fill="#F2F2F2F2"/>
-        <Rectangle HorizontalAlignment="Right" Height="21cm" Margin="0,0,0,0" StrokeDashArray="6 8" VerticalAlignment="Top" Width="2.8cm" Fill="#F2F2F2F2"/>
+        <Image x:FieldModifier="public" x:Name="imgRocket" HorizontalAlignment="Left" Height="21cm" Margin="0,0,0,0" VerticalAlignment="Top" Width="14.8cm" />
 
-        <Image x:FieldModifier="public" x:Name="imgBack" HorizontalAlignment="Left" Height="9cm" VerticalAlignment="Top" Width="12cm" Margin="0cm,12cm,0,0" Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5" />
-
-        <Line X1="6cm" Y1="3cm" X2="12cm" Y2="9cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-        <Line X1="6cm" Y1="3cm" X2="0" Y2="9cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-
-        <Line X1="2cm" Y1="3cm" X2="2cm" Y2="12cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-        <Line X1="3cm" Y1="3cm" X2="3cm" Y2="12cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-        <Line X1="10cm" Y1="12cm" X2="10cm" Y2="3cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-        <Line X1="9cm" Y1="3cm" X2="9cm" Y2="12cm" Stroke="Black" StrokeThickness="1" StrokeDashArray="6 8" />
-
-        <Label x:Name="label_Copy" Content="www.gordarg.com" HorizontalAlignment="Left" Margin="40,342,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <Label x:FieldModifier="public" x:Name="lblName" Content="نام و نام خانوادگی" HorizontalAlignment="Left" Margin="116,379,0,0" VerticalAlignment="Top" Width="220" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontWeight="Black"/>
+        <Image x:FieldModifier="public" x:Name="img34" Stretch="UniformToFill" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="103" Margin="177,235,0,0"/>
+        <Label x:FieldModifier="public" x:Name="lblTitle" Content="عنوان" HorizontalAlignment="Left" Margin="116,412,0,0" VerticalAlignment="Top" Width="220" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+        <Label x:FieldModifier="public" x:Name="lblCode" Content="کد" HorizontalAlignment="Left" Margin="82,278,0,0" VerticalAlignment="Top" Width="138" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20
+               " Height="52" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -35,19 +25,5 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="label_Copy1" Content="www.gordarg.com" HorizontalAlignment="Left" Margin="308,344,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label x:FieldModifier="public" x:Name="lblName" Content="نام و نام خانوادگی" HorizontalAlignment="Left" Margin="116,379,0,0" VerticalAlignment="Top" Width="220" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontWeight="Black"/>
-        <Image x:FieldModifier="public" x:Name="img34" Stretch="UniformToFill" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="103" Margin="177,235,0,0"/>
-        <Label x:FieldModifier="public" x:Name="lblTitle" Content="عنوان" HorizontalAlignment="Left" Margin="116,412,0,0" VerticalAlignment="Top" Width="220" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="459,454,0,-0.299" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="340" Width="94"><Run Text="ww.gordarg.com"/><LineBreak/><Run/><LineBreak/><Run FlowDirection="RightToLeft" Text="طراحی نرم افزار"/><LineBreak/><Run FlowDirection="RightToLeft"/><LineBreak/><Run FlowDirection="RightToLeft" Text="09120982276"/><LineBreak/><Run FlowDirection="RightToLeft"/><LineBreak/><Run FlowDirection="RightToLeft" Text="خدمات فناوری اطلاعات"/><LineBreak/><Run FlowDirection="RightToLeft"/><LineBreak/><Run FlowDirection="RightToLeft" Text="خدمات مدیریت سرمایه ی انسانی"/><LineBreak/><Run FlowDirection="RightToLeft"/><LineBreak/><Run FlowDirection="RightToLeft" Text="خدمات مدیریت بازاریابی"/><LineBreak/><Run FlowDirection="RightToLeft"/><LineBreak/><Run FlowDirection="RightToLeft" Text="تماس بگیرید"/></TextBlock>
     </Grid>
 </UserControl>

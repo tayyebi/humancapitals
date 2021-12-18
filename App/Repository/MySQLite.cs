@@ -16,8 +16,7 @@ namespace App.Repository
             if (connection != null)
                 return;
 
-            string databaseFile = Directory.GetCurrentDirectory() + "\\Resources\\local.db";
-            string connectionString = $"Data Source={databaseFile}"; // "Data Source=:memory:";
+            string connectionString = $"Data Source={ Directory.GetCurrentDirectory() + "\\Resources\\local.db" }"; // "Data Source=:memory:";
 
             connection = new SQLiteConnection(connectionString);
             connection.Open();
